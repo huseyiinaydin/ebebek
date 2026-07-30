@@ -12,7 +12,7 @@ test.describe('Ebebek - Telefon ile Giriş Testleri', () => {
     });
 
     test('Geçerli telefon numarası Kontrolü', async ({ page }) => {
-        await loginPage.enterPhoneNumber('+90 (531) 561 07 95');
+        await loginPage.enterPhoneNumber('5315610795');
         await expect(loginPage.registerTitle).toBeVisible({ timeout: 10000 });
         await page.screenshot({ path: 'screenshots/Hesap oluştur.png' });
     });
