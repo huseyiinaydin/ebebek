@@ -22,6 +22,16 @@ test.describe('Ebebek - Telefon ile Giriş Testleri', () => {
         await expect(loginPage.yanlisTelNoUyari).toBeVisible({timeout: 10000});
         await page.screenshot({ path: 'screenshots/Yanlış telefon girişi uyarı mesajı.png' });
 
+    });
+    test('e-posta alanına geçiş kontrolü', async ({page})=> {
+
+        await loginPage.enterEposta('deneme');
+        await expect(loginPage.EpostaTab).toBeVisible(({timeout: 10000}));
+        await page.screenshot({ path: 'screenshots/E-posta alanına geçiş.png' });
 
     });
+
+
+
+
 });

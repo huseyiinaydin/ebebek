@@ -6,31 +6,25 @@
  */
 export class LoginPage {
 
-    /** @type {Page} */
     page;
-
-    /** @type {Locator} */
     phoneInput;
-
-    /** @type {Locator} */
     submitButton;
-
-    /** @type {Locator} */
     registerTitle;
-
-    /** @type {Locator} */
     yanlisTelNoUyari;
+    EpostaInput;
+    EpostaTab;
+    EpostaAdresi;
 
-    /**
-     * @param {Page} page
-     */
     constructor(page) {
         this.page = page;
         this.phoneInput = page.getByRole('textbox', { name: '+90 (___) ___ __ __' })
         this.submitButton = page.getByRole('button', { name: 'Giriş Yap / Hesap Oluştur' })
         this.registerTitle = page.getByRole('heading', { name: 'Hesap Oluştur' })
-        this.yanlisTelNoUyari = page.getByText(/Lütfen ['’]5['’] rakamı ile başlayarak giriş yapınız\./);    }
+        this.yanlisTelNoUyari = page.getByText(/Lütfen ['’]5['’] rakamı ile başlayarak giriş yapınız\./);
+        this.EpostaInput = page.getByText('E-posta')
+        this.EpostaTab = page.getByRole('textbox', {name: 'E-posta adresiniz'})
 
+    }
     async navigateToLogin() {
         await this.page.goto('/login', {
             waitUntil: 'domcontentloaded'
@@ -41,4 +35,10 @@ export class LoginPage {
         await this.phoneInput.fill(phoneNumber);
         await this.submitButton.click();
     }
+
+    async enterEposta(EpostaAdresi){
+        await this.EpostaTab.fill(EpostaAdresi);
+        await this.submitButton.click();
+    }
+
 }
