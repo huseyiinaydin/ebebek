@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/huseyiinaydin/playwright-automation-project.git'
+                git branch: 'main', url: 'https://github.com/huseyiinaydin/ebebek.git'
             }
         }
 
