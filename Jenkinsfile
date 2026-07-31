@@ -23,7 +23,7 @@ pipeline {
             steps {
                 // Testler patlasa bile boru hattı devam etsin ve rapor oluşsun diye catchError ekleyebiliriz
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'npx playwright test'
+                    sh 'npx playwright test --workers=2'
                 }
             }
         }
