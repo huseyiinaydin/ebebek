@@ -1,13 +1,15 @@
 {
   "name": "playwright-otomasyon",
   "version": "1.0.0",
-  "description": "",
+  "description": "Playwright Automation Suite",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no tests specified\" && exit 1"
+    "clean": "rm -rf allure-results allure-report test-results",
+    "test": "npm run clean && npx playwright test",
+    "report": "npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
   },
   "keywords": [],
-  "author": "",
+  "author": "Hüseyin Aydın",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {

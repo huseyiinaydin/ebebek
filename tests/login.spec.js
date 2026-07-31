@@ -66,5 +66,4 @@ test.describe('Ebebek - Telefon ile Giriş Testleri', () => {
 
     });
 
-
 });
