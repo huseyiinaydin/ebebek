@@ -14,6 +14,9 @@ export class LoginPage {
     epostaTab;
     epostaInput;
     gecersizEpostaGirisi;
+    girilmemisTelHataMesaji;
+    girilmemisEpostaHataMesaji;
+
 
     constructor(page) {
         this.page = page;
@@ -23,7 +26,12 @@ export class LoginPage {
         this.yanlisTelNoUyari = page.getByText(/Lütfen ['’]5['’] rakamı ile başlayarak giriş yapınız\./);
         this.epostaTab = page.getByText('E-postaE-posta'); // veya page.getByRole('tab', { name: /E-posta/i });
         this.epostaInput = page.getByRole('textbox', { name: 'E-posta adresiniz' });
-        this.gecersizEpostaGirisi = page.getByText(/Geçerli bir e-posta adresi giriniz./)
+        this.gecersizEpostaGirisi = page.getByText(/Geçerli bir e-posta adresi giriniz./);
+        this.sayfaBoslugu = page.locator('section');
+        this.girilmemisTelHataMesaji = page.getByText('Lütfen 10 haneli olan geçerli bir telefon numarası giriniz.');
+        this.girilmemisEpostaHataMesaji = page.getByText('Bu alan gereklidir.');
+
+
     }
     async navigateToLogin() {
         await this.page.goto('/login', {
@@ -38,10 +46,21 @@ export class LoginPage {
 
     async clickEpostaTab() {
         await this.epostaTab.click();
-        await this.page.waitForTimeout(1000);
     }
 
     async enterEposta(email) {
         await this.epostaInput.fill(email);
+        await this.submitButton.click();
+
+    }
+
+    async clickEpostaTextbox() {
+        await this.epostaInput.click();
+    }
+
+    async clickTelTextbox(){
+        await this.phoneInput.click();
+        await this.sayfaBoslugu.click();
+
     }
 }
