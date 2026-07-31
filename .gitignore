@@ -3,3 +3,6 @@ allure-results/
 allure-report/
 screenshots/
 test-results/
+playwright-report/
+blob-report/
+test-results/

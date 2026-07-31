@@ -36,7 +36,7 @@ test.describe('Ebebek - Telefon ile Giriş Testleri', () => {
 
         await loginPage.clickEpostaTab();
         await loginPage.enterEposta('deneme');
-        await page.getByRole('button', { name: 'Giriş Yap / Hesap Oluştur' }).click();
+        await loginPage.submitButton.click();
         await expect(loginPage.gecersizEpostaGirisi).toBeVisible({ timeout: 10000 });
         await page.screenshot({ path: 'screenshots/E-posta alanına geçiş.png' });
 
