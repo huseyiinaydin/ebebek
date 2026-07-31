@@ -1,18 +1,20 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/opt/homebrew/bin:/usr/local/bin:${env.PATH}"
+    }
+
+    agent any
+
+    tools {
+        nodejs 'NodeJS' // Jenkins Tools'ta verdiğin isim
+
+    }
     stages {
         stage('Checkout') {
             steps {
-                // Git'ten en güncel kodu çek
-                checkout scm
-            }
-        }
-
-        stage('Clean Workspace & Results') {
-            steps {
-                // 🧹 SEN HİÇBİR ŞEY YAPMA: Jenkins eski tüm rapor artıklığını otomatik silsin!
-                sh 'rm -rf allure-results allure-report test-results screenshots'
+                git branch: 'main', url: 'https://github.com/huseyiinaydin/ebebek.git'
             }
         }
 
@@ -25,6 +27,7 @@ pipeline {
 
         stage('Run Playwright Tests') {
             steps {
+                // Testler patlasa bile boru hattı devam etsin ve rapor oluşsun diye catchError ekleyebiliriz
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'npx playwright test'
                 }
@@ -34,10 +37,9 @@ pipeline {
 
     post {
         always {
-            // Sadece o koşuma ait temiz Allure raporunu üret
-            allure includeProperties: false,
-                   jdk: '',
-                   results: [[path: 'allure-results']]
+            // Allure raporunu Jenkins'e oluştur ve bağla
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+            echo 'Test koşumu tamamlandı, Allure raporu üretildi.'
         }
     }
 }
