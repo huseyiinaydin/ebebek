@@ -5,12 +5,6 @@ pipeline {
         PATH = "/opt/homebrew/bin:/usr/local/bin:${env.PATH}"
     }
 
-    agent any
-
-    tools {
-        nodejs 'NodeJS' // Jenkins Tools'ta verdiğin isim
-
-    }
     stages {
         stage('Checkout') {
             steps {
