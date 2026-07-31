@@ -23,13 +23,13 @@ export class LoginPage {
         this.phoneInput = page.getByRole('textbox', { name: '+90 (___) ___ __ __' });
         this.submitButton = page.getByRole('button', { name: 'Giriş Yap / Hesap Oluştur' });
         this.registerTitle = page.getByRole('heading', { name: 'Hesap Oluştur' });
-        this.yanlisTelNoUyari = page.getByText(/Lütfen ['’]5['’] rakamı ile başlayarak giriş yapınız\./);
+        this.yanlisTelNoUyari = page.getByText(/Lütfen ['’]5['’] rakamı ile başlayarak giriş yapınız\./,{ exact: true });
         this.epostaTab = page.getByText('E-postaE-posta'); // veya page.getByRole('tab', { name: /E-posta/i });
         this.epostaInput = page.getByRole('textbox', { name: 'E-posta adresiniz' });
-        this.gecersizEpostaGirisi = page.getByText(/Geçerli bir e-posta adresi giriniz./);
+        this.gecersizEpostaGirisi = page.getByText(/Geçerli bir e-posta adresi giriniz./,{ exact: true });
         this.sayfaBoslugu = page.locator('section');
-        this.girilmemisTelHataMesaji = page.getByText('Lütfen 10 haneli olan geçerli bir telefon numarası giriniz.');
-        this.girilmemisEpostaHataMesaji = page.getByText('Bu alan gereklidir.');
+        this.girilmemisTelHataMesaji = page.getByText('Lütfen 10 haneli olan geçerli bir telefon numarası giriniz.',{ exact: true });
+        this.girilmemisEpostaHataMesaji = page.getByText('Bu alan gereklidir.',{ exact: true });
 
 
     }
