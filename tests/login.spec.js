@@ -23,10 +23,21 @@ test.describe('Ebebek - Telefon ile Giriş Testleri', () => {
         await page.screenshot({ path: 'screenshots/Yanlış telefon girişi uyarı mesajı.png' });
 
     });
-    test('e-posta alanına geçiş kontrolü', async ({page})=> {
+    test('e-posta alanına geçiş kontrolü', async ({ page }) => {
 
+        await loginPage.clickEpostaTab();
+        await expect(loginPage.epostaInput).toBeVisible({ timeout: 10000 });
+        await loginPage.enterEposta('deneme@gmail.com');
+        await page.screenshot({ path: 'screenshots/E-posta alanına geçiş.png' });
+
+    });
+
+    test('e-posta alanı hatalı e posta girişi kontrolü', async ({ page }) => {
+
+        await loginPage.clickEpostaTab();
         await loginPage.enterEposta('deneme');
-        await expect(loginPage.EpostaTab).toBeVisible(({timeout: 10000}));
+        await page.getByRole('button', { name: 'Giriş Yap / Hesap Oluştur' }).click();
+        await expect(loginPage.gecersizEpostaGirisi).toBeVisible({ timeout: 10000 });
         await page.screenshot({ path: 'screenshots/E-posta alanına geçiş.png' });
 
     });
